@@ -483,3 +483,4 @@ $RECYCLE.BIN/
 saves/SafeFile_1.txt
 saves/SafeFile_2.txt
 .gitignore
+.vscode/

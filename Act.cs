@@ -38,7 +38,7 @@ namespace ConsoleRpg02
                 player.Speed = 8;
 
                 //last time player looged in, so we can treat different game save slots
-                player.LastLogin = DateTime.Now;
+                player.LastLogin = DateTime.Now; 
 
                 // create a new file to store player data
                 // Todo make be able to make multiple save slots, so player can have different
@@ -65,7 +65,8 @@ namespace ConsoleRpg02
 
                     writer.Flush(); //update the info 
                 }
-                Console.WriteLine($"New game started for player: {player.Name}, login time: {player.LastLogin}");
+                //Console.WriteLine($"New game started for player: {player.Name}, login time: {player.LastLogin}");
+                Console.WriteLine($"ConsoleRPG: Welcome to the game, {player.Name}! Your adventure begins now!");
             }else
             {
                 Console.WriteLine($"Loading game for player: {_name}");

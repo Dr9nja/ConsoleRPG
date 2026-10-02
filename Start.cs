@@ -22,6 +22,24 @@ namespace ConsoleRpg02
                 }else return "undefined";
             }
         }
+        //and the virse versa func!
+        public static void WriteSaveLine(string _filePath, int _lineNum, string _newValue)
+        {
+            var lines = File.ReadAllLines(_filePath);
+
+            //Console.WriteLine($"{lines[_lineNum - 1]}"); // it was a test if the lines are readed
+
+            for (int line = 0; line < lines.Length; line++)
+            {
+                if (line == _lineNum - 1)
+                {
+                    lines[line] = _newValue;
+                    File.WriteAllLines(_filePath, lines);
+                    //Console.WriteLine($"Saved new value: {lines[line]}");
+                    break;
+                }
+            }
+        }
     }
     public class GameState
     {

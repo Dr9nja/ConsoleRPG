@@ -19,8 +19,10 @@ namespace ConsoleRpg02
     {
         //interactions acts are used when player is in state of world. when it's a fight, class Actions used instead
 
-        public static void StartGame(string _name, bool _isNewGame)
+        public static string StartGame(string _name, bool _isNewGame)
         {
+            var globalFilePath = ""; // this variable used to store the file path for both
+            // new game and existing game, so we can remeber the file we need to changeeee
             if (_isNewGame)
             {
                 var player = new Player();
@@ -47,6 +49,7 @@ namespace ConsoleRpg02
                 var saveID = Directory.GetFiles("saves").Length + 1; // it's like, to make them unique??
 
                 string filePath = Path.GetFullPath($"saves/SafeFile_{saveID}.txt"); //path to file?
+                globalFilePath = filePath;
                 // write player data to the file
                 // had a problem that it kept searching the file in bin/Debug/net :P that's also why
                 // i gave up and gave it to create folder itself
@@ -67,9 +70,11 @@ namespace ConsoleRpg02
                 }
                 //Console.WriteLine($"New game started for player: {player.Name}, login time: {player.LastLogin}");
                 Console.WriteLine($"ConsoleRPG: Welcome to the game, {player.Name}! Your adventure begins now!");
+                return globalFilePath;
             }else
             {
                 Console.WriteLine($"Loading game for player: {_name}");
+                return globalFilePath;
             }
             // this one function checks the files when the game got openned
             

@@ -39,7 +39,7 @@ namespace ConsoleRpg02
                 // be used to store keys and values.
                 var userInput = Console.ReadLine();
 
-                //simple tester of file writing ---------------------
+                // login
                 if (GameState.State == "LoginNoSave")
                 {
                     if (string.IsNullOrWhiteSpace(userInput))
@@ -49,7 +49,8 @@ namespace ConsoleRpg02
                     }
                     else {
                         GameState.State = "";
-                        Interactions.StartGame(userInput, true);
+                        var globalFilePath = Interactions.StartGame(userInput, true);
+                        Functions.WriteSaveLine(globalFilePath, 7, DateTime.Now.ToString()); // update last login time
                         };
                 }else if (GameState.State == "LoginHasSave")
                 {
@@ -67,6 +68,7 @@ namespace ConsoleRpg02
                             {
                                 GameState.State = "";
                                 Interactions.StartGame(Functions.ReadSaveLine(filePath, 1), false);
+                                Functions.WriteSaveLine(filePath, 7, DateTime.Now.ToString()); // update last login time
                             }
                             else
                             {
@@ -77,7 +79,8 @@ namespace ConsoleRpg02
                         else
                         {
                             GameState.State = "";
-                            Interactions.StartGame(userInput, true);
+                            var globalFilePath = Interactions.StartGame(userInput, true);
+                            Functions.WriteSaveLine(globalFilePath, 7, DateTime.Now.ToString()); // update last login time
                         }
                     }
                 }

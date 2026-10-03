@@ -59,12 +59,12 @@ namespace ConsoleRpg02
                     writer.WriteLine(player.Exp);
                     writer.WriteLine(player.Level);
                     writer.WriteLine(player.HP);
-                    writer.WriteLine(player.DEF);
-                    writer.WriteLine(player.ATK);
-                    writer.WriteLine(player.LastLogin);
-                    writer.WriteLine(player.Gold);
                     writer.WriteLine(player.MP);
+                    writer.WriteLine(player.ATK);
+                    writer.WriteLine(player.DEF);
                     writer.WriteLine(player.Speed);
+                    writer.WriteLine(player.Gold);
+                    writer.WriteLine(player.LastLogin);
 
                     writer.Flush(); //update the info 
                 }
@@ -73,6 +73,7 @@ namespace ConsoleRpg02
                 return globalFilePath;
             }else
             {
+
                 Console.WriteLine($"Loading game for player: {_name}");
                 return globalFilePath;
             }

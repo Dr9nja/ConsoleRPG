@@ -29,7 +29,7 @@ namespace ConsoleRpg02
                 for (int i = 0; i < savesLenght; i++)
                 {
                     var filePath = $"saves/SafeFile_{i + 1}.txt";
-                    Console.WriteLine($"save {i + 1}: {Functions.ReadSaveLine(filePath, 1)}, last login: {Functions.ReadSaveLine(filePath, 7)}");
+                    Console.WriteLine($"save {i + 1}: {Functions.ReadSaveLine(filePath, 1)}, last login: {Functions.ReadSaveLine(filePath, 10)}");
                 }
             }
             while (true)
@@ -39,7 +39,7 @@ namespace ConsoleRpg02
                 // be used to store keys and values.
                 var userInput = Console.ReadLine();
 
-                // login
+                // LOGIN ------------------------------------------------------------------------------------------------------------------------------------
                 if (GameState.State == "LoginNoSave")
                 {
                     if (string.IsNullOrWhiteSpace(userInput))
@@ -48,9 +48,9 @@ namespace ConsoleRpg02
                         continue;
                     }
                     else {
-                        GameState.State = "";
+                        GameState.State = "World";
                         var globalFilePath = Interactions.StartGame(userInput, true);
-                        Functions.WriteSaveLine(globalFilePath, 7, DateTime.Now.ToString()); // update last login time
+                        Functions.WriteSaveLine(globalFilePath, 10, DateTime.Now.ToString()); // update last login time
                         };
                 }else if (GameState.State == "LoginHasSave")
                 {
@@ -66,9 +66,9 @@ namespace ConsoleRpg02
                             var filePath = $"saves/SafeFile_{saveNumber}.txt";
                             if (File.Exists(filePath))
                             {
-                                GameState.State = "";
+                                GameState.State = "World";
                                 Interactions.StartGame(Functions.ReadSaveLine(filePath, 1), false);
-                                Functions.WriteSaveLine(filePath, 7, DateTime.Now.ToString()); // update last login time
+                                Functions.WriteSaveLine(filePath, 10, DateTime.Now.ToString()); // update last login time
                             }
                             else
                             {
@@ -78,14 +78,18 @@ namespace ConsoleRpg02
                         }
                         else
                         {
-                            GameState.State = "";
+                            GameState.State = "World";
                             var globalFilePath = Interactions.StartGame(userInput, true);
-                            Functions.WriteSaveLine(globalFilePath, 7, DateTime.Now.ToString()); // update last login time
+                            Functions.WriteSaveLine(globalFilePath, 10, DateTime.Now.ToString()); // update last login time
                         }
                     }
-                }
-                        
-                //----------------------------------------------------
+                }       
+
+                //------------------------------------------------------------------------------------------------------------------------------------
+
+                // WORLD ------------------------------------------------------------------------------------------------------------------------------------
+
+
             }
         }// should it return something?..
     }
